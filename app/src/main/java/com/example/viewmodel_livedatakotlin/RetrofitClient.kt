@@ -4,13 +4,16 @@ package com.example.viewmodel_livedatakotlin
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-object RetrofitClient {
+class RetrofitClient {
 
-    private val retrofit = Retrofit.Builder()
-        .baseUrl("https://run.mocky.io/v3/")
-        .addConverterFactory(GsonConverterFactory.create())
-        .build()
-
-    val consumirApi = retrofit.create(ConsumirApi::class.java)
+    companion object {
+        val url = "https://run.mocky.io/v3/"
+        fun getRetrofit(): Retrofit {
+            return Retrofit.Builder()
+                .baseUrl(url)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build()
+        }
+    }
 }
 
